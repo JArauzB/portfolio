@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Production build
+build/
+.docusaurus/
+
+# IDE
+.vscode/
+.idea/
+
+# Old portfolio files (not needed for Docusaurus deployment)
+old_files/
+my-website/
+assets/
+forms/
+index.html
+
+# Misc
+.DS_Store
+.env
+.env.local
+.cache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
