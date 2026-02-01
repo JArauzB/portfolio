@@ -28,7 +28,21 @@ This command generates static content into the `build` directory.
 
 ## 📦 Deployment to Cloudflare Pages
 
-### Option 1: Automatic Deployment (Recommended)
+### Cloudflare Pages Settings (IMPORTANT)
+
+When configuring your Cloudflare Pages project, use these **exact settings**:
+
+- **Framework preset:** `None` (or `Docusaurus`)
+- **Build command:** `npm run build`
+- **Build output directory:** `build`
+- **Root directory:** `/` (leave empty)
+- **Environment variables:** None needed
+- **Deploy command:** **LEAVE EMPTY** (Do NOT use `npx wrangler deploy`)
+
+> [!WARNING]
+> Do NOT add a custom deploy command like `npx wrangler deploy`. Cloudflare Pages automatically handles deployment after the build completes. The `wrangler.jsonc` file is included for compatibility but Pages will use the build directory directly.
+
+### Automatic Deployment (Recommended)
 
 1. **Push to GitHub**
    ```bash
@@ -37,33 +51,32 @@ This command generates static content into the `build` directory.
    git push origin main
    ```
 
-2. **Connect to Cloudflare Pages**
+2. **Connect to Cloudflare Pages** (First time only)
    - Go to [Cloudflare Dashboard](https://dash.cloudflare.com/)
-   - Navigate to **Workers & Pages** → **Create application** → **Pages**
-   - Connect your GitHub repository
-   - Configure build settings:
-     - **Build command:** `npm run build`
-     - **Build output directory:** `build`
-     - **Node version:** `18` or higher
+   - Navigate to **Workers & Pages** → **Create application** → **Pages** → **Connect to Git**
+   - Select your GitHub repository
+   - Configure build settings as shown above
+   - Click **Save and Deploy**
 
-3. **Save and Deploy**
-   - Cloudflare will automatically build and deploy your site
-   - Every push to `main` branch will trigger a new deployment
+3. **Automatic deployments**
+   - Every push to `main` branch will trigger a new deployment automatically
 
-### Option 2: Manual Deployment
+### Manual Deployment (Alternative)
+
+If you prefer manual deployments using Wrangler CLI:
 
 ```bash
 # Build the site
 npm run build
 
-# Install Wrangler (Cloudflare CLI)
+# Install Wrangler (if not installed)
 npm install -g wrangler
 
-# Login to Cloudflare
+# Login to Cloudflare (first time only)
 wrangler login
 
-# Deploy
-wrangler pages deploy build --project-name=portfolio
+# Deploy (wrangler.jsonc configures the build directory)
+npx wrangler pages deploy
 ```
 
 ## 📝 Content Structure
