@@ -32,35 +32,21 @@ const config = {
 
   onBrokenLinks: 'throw',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en', 'es', 'de', 'nl'],
-    localeConfigs: {
-      en: {
-        label: '🇬🇧 English',
-        direction: 'ltr',
-        htmlLang: 'en-GB',
-      },
-      es: {
-        label: '🇪🇸 Español',
-        direction: 'ltr',
-        htmlLang: 'es-ES',
-      },
-      de: {
-        label: '🇩🇪 Deutsch',
-        direction: 'ltr',
-        htmlLang: 'de-DE',
-      },
-      nl: {
-        label: '🇳🇱 Nederlands',
-        direction: 'ltr',
-        htmlLang: 'nl-NL',
-      },
+  // i18n: {
+  //   defaultLocale: 'en',
+  //   locales: ['en'],
+  // },
+
+  scripts: [
+    {
+      src: 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit',
+      async: true,
     },
-  },
+    {
+      src: '/custom-translate.js',
+      async: true,
+    },
+  ],
 
   presets: [
     [
@@ -105,9 +91,14 @@ const config = {
           },
           { to: '/resume', label: 'Resume', position: 'left' },
           { to: '/how-i-work', label: 'How I Work', position: 'left' },
+          // {
+          //   type: 'localeDropdown',
+          //   position: 'right',
+          // },
           {
-            type: 'localeDropdown',
+            type: 'html',
             position: 'right',
+            value: '<div id="google_translate_element"></div>',
           },
           {
             href: 'https://github.com/JArauzB',
