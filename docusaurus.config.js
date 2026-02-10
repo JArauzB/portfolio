@@ -4,7 +4,7 @@
 // There are various equivalent ways to declare your Docusaurus config.
 // See: https://docusaurus.io/docs/api/docusaurus-config
 
-import {themes as prismThemes} from 'prism-react-renderer';
+import { themes as prismThemes } from 'prism-react-renderer';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -37,7 +37,29 @@ const config = {
   // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'es', 'de', 'nl'],
+    localeConfigs: {
+      en: {
+        label: '🇬🇧 English',
+        direction: 'ltr',
+        htmlLang: 'en-GB',
+      },
+      es: {
+        label: '🇪🇸 Español',
+        direction: 'ltr',
+        htmlLang: 'es-ES',
+      },
+      de: {
+        label: '🇩🇪 Deutsch',
+        direction: 'ltr',
+        htmlLang: 'de-DE',
+      },
+      nl: {
+        label: '🇳🇱 Nederlands',
+        direction: 'ltr',
+        htmlLang: 'nl-NL',
+      },
+    },
   },
 
   presets: [
@@ -52,21 +74,7 @@ const config = {
           editUrl:
             'https://github.com/JArauzB/portfolio/tree/main/my-website/',
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/JArauzB/portfolio/tree/main/my-website/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
+        blog: false,
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -95,8 +103,12 @@ const config = {
             position: 'left',
             label: 'Projects',
           },
-          {to: '/resume', label: 'Resume', position: 'left'},
-          {to: '/blog', label: 'Blog', position: 'left'},
+          { to: '/resume', label: 'Resume', position: 'left' },
+          { to: '/how-i-work', label: 'How I Work', position: 'left' },
+          {
+            type: 'localeDropdown',
+            position: 'right',
+          },
           {
             href: 'https://github.com/JArauzB',
             label: 'GitHub',
@@ -129,15 +141,7 @@ const config = {
               },
             ],
           },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
-            ],
-          },
+
         ],
         copyright: `Copyright © ${new Date().getFullYear()} Jorge Arauz. Built with Docusaurus.`,
       },
